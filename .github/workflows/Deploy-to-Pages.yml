@@ -21,7 +21,7 @@ jobs:
 
       - name: Copy script
         run: |
-          /usr/bin/mkdir github-pages
+          /usr/bin/mkdir _site
           /usr/bin/cp install.sh _site/index.html
 
       - name: Configure GitHub Pages
