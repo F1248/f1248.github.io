@@ -16,7 +16,7 @@ jobs:
 
   Deploy-to-Pages:
     name: Deploy to Pages
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
 
       - name: Checkout
@@ -25,8 +25,8 @@ jobs:
 
       - name: Copy script
         run: |
-          /usr/bin/mkdir _site
-          /usr/bin/cp install.sh _site/index.html
+          /bin/mkdir _site
+          /bin/cp install.sh _site/index.html
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@main
