@@ -24,7 +24,7 @@ jobs:
         uses: actions/checkout@main
         with: { repository: F1248/Genius }
 
-      - name: Copy script
+      - name: Copy Script
         run: |
           /bin/mkdir _site
           /bin/cp install.sh _site/index.html
@@ -32,8 +32,8 @@ jobs:
       - name: Configure GitHub Pages
         uses: actions/configure-pages@main
 
-      - name: Upload GitHub Pages artifact
+      - name: Upload GitHub Pages Artifact
         uses: actions/upload-pages-artifact@main
 
-      - name: Deploy GitHub Pages site
+      - name: Deploy GitHub Pages Site
         uses: actions/deploy-pages@main
