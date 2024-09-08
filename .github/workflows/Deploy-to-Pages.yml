@@ -32,7 +32,7 @@ jobs:
           /bin/mkdir _site
           eval $(
             /opt/homebrew/bin/git -C Genius for-each-ref --format="
-              /opt/homebrew/bin/git -C Genius switch %(refname);
+              /opt/homebrew/bin/git -C Genius checkout %(refname);
               /bin/cp Genius/install.sh _site/\$(
                 /bin/echo %(refname:lstrip=-1) | /usr/bin/sed \"s/^main$/index/\"
               ).html;
