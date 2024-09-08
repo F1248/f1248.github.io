@@ -20,7 +20,7 @@ jobs:
 
     steps:
 
-      - name: Checkout
+      - name: Checkout Genius
         uses: actions/checkout@main
         with: { repository: F1248/Genius }
 
