@@ -22,12 +22,22 @@ jobs:
 
       - name: Checkout Genius
         uses: actions/checkout@main
-        with: { repository: F1248/Genius }
+        with: 
+          repository: F1248/Genius
+          path: Genius
+          fetch-depth: 0
 
       - name: Copy Script
         run: |
           /bin/mkdir _site
-          /bin/cp install.sh _site/index.html
+          eval $(
+            /opt/homebrew/bin/git -C Genius for-each-ref --format="
+              /opt/homebrew/bin/git -C Genius switch %(refname);
+              /bin/cp Genius/install.sh _site/\$(
+                /bin/echo %(refname:lstrip=-1) | /usr/bin/sed \"s/^main$/index/\"
+              ).html;
+            " "refs/remotes/origin/*"
+          )
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@main
