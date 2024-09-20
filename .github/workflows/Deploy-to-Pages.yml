@@ -27,7 +27,7 @@ jobs:
           path: Genius
           fetch-depth: 0
 
-      - name: Copy Script
+      - name: Copy Scripts
         run: |
           /bin/mkdir _site
           eval $(
