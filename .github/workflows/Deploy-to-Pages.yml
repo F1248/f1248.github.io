@@ -44,7 +44,7 @@ jobs:
 
       - name: Attest Build Provenance
         uses: actions/attest-build-provenance@main
-        with: { subject-path: _site }
+        with: { subject-path: _site/* }
 
       - name: Upload GitHub Pages Artifact
         uses: actions/upload-pages-artifact@main
