@@ -22,7 +22,7 @@ jobs:
 
       - name: Checkout Genius
         uses: actions/checkout@main
-        with: 
+        with:
           repository: F1248/Genius
           path: Genius
           fetch-depth: 0
