@@ -12,7 +12,7 @@ jobs:
 
   Deploy-to-Pages:
     name: Deploy to Pages
-    runs-on: macos-latest
+    runs-on: macos-15
 
     permissions:
       pages: write
