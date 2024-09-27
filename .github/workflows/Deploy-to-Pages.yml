@@ -31,14 +31,14 @@ jobs:
       - name: Copy Scripts
         run: |
           mkdir _site
-          eval $(
+          eval "$(
             git -C Genius for-each-ref --format="
               git -C Genius checkout %(refname);
               cp Genius/install.sh _site/\$(
                 echo %(refname:lstrip=-1) | sed \"s/^main$/index/\"
               ).html;
             " "refs/remotes/origin/*"
-          )
+          )"
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@main
