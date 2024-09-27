@@ -30,12 +30,12 @@ jobs:
 
       - name: Copy Scripts
         run: |
-          /bin/mkdir _site
+          mkdir _site
           eval $(
-            /opt/homebrew/bin/git -C Genius for-each-ref --format="
-              /opt/homebrew/bin/git -C Genius checkout %(refname);
-              /bin/cp Genius/install.sh _site/\$(
-                /bin/echo %(refname:lstrip=-1) | /usr/bin/sed \"s/^main$/index/\"
+            git -C Genius for-each-ref --format="
+              git -C Genius checkout %(refname);
+              cp Genius/install.sh _site/\$(
+                echo %(refname:lstrip=-1) | sed \"s/^main$/index/\"
               ).html;
             " "refs/remotes/origin/*"
           )
