@@ -1,54 +1,54 @@
 name: Deploy to Pages
 
 on:
-  push: { branches: main }
-  workflow_dispatch:
+    push: { branches: main }
+    workflow_dispatch:
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+    group: ${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: true
 
 jobs:
 
-  Deploy-to-Pages:
-    name: Deploy to Pages
-    runs-on: macos-15
+    Deploy-to-Pages:
+        name: Deploy to Pages
+        runs-on: macos-15
 
-    permissions:
-      pages: write
-      id-token: write
-      attestations: write
+        permissions:
+            pages: write
+            id-token: write
+            attestations: write
 
-    steps:
+        steps:
 
-      - name: Checkout Genius
-        uses: actions/checkout@main
-        with:
-          repository: F1248/Genius
-          path: Genius
-          fetch-depth: 0
+            - name: Checkout Genius
+              uses: actions/checkout@main
+              with:
+                repository: F1248/Genius
+                path: Genius
+                fetch-depth: 0
 
-      - name: Copy Scripts
-        run: |
-          mkdir _site
-          eval "$(
-            git -C Genius for-each-ref --format="
-              git -C Genius checkout %(refname);
-              cp Genius/install.sh _site/\$(
-                echo %(refname:lstrip=-1) | sed \"s/^main$/index/\"
-              ).html;
-            " "refs/remotes/origin/*"
-          )"
+            - name: Copy Scripts
+              run: |
+                mkdir _site
+                eval "$(
+                    git -C Genius for-each-ref --format="
+                        git -C Genius checkout %(refname);
+                        cp Genius/install.sh _site/\$(
+                            echo %(refname:lstrip=-1) | sed \"s/^main$/index/\"
+                        ).html;
+                    " "refs/remotes/origin/*"
+                )"
 
-      - name: Configure GitHub Pages
-        uses: actions/configure-pages@main
+            - name: Configure GitHub Pages
+              uses: actions/configure-pages@main
 
-      - name: Attest Build Provenance
-        uses: actions/attest-build-provenance@main
-        with: { subject-path: _site }
+            - name: Attest Build Provenance
+              uses: actions/attest-build-provenance@main
+              with: { subject-path: _site }
 
-      - name: Upload GitHub Pages Artifact
-        uses: actions/upload-pages-artifact@main
+            - name: Upload GitHub Pages Artifact
+              uses: actions/upload-pages-artifact@main
 
-      - name: Deploy GitHub Pages Site
-        uses: actions/deploy-pages@main
+            - name: Deploy GitHub Pages Site
+              uses: actions/deploy-pages@main
