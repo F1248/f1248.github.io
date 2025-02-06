@@ -16,12 +16,11 @@ concurrency:
 jobs:
     Deploy-to-Pages:
         name: Deploy to Pages
-        runs-on: macos-15
-
         permissions:
-            pages: write
-            id-token: write
             attestations: write
+            id-token: write
+            pages: write
+        runs-on: macos-15
 
         steps:
             - name: Checkout Genius
