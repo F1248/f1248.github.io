@@ -2,7 +2,8 @@ name: Deploy to Pages
 
 on:
     push:
-        branches: main
+        paths:
+            - .github/workflows/Deploy-to-Pages.yml
     workflow_dispatch:
 
 defaults:
