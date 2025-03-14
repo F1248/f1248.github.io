@@ -1,9 +1,9 @@
-name: Deploy to Pages
+name: Deploy to GitHub Pages
 
 on:
     push:
         paths:
-            - .github/workflows/Deploy-to-Pages.yml
+            - .github/workflows/Deploy-to-GitHub-Pages.yml
     workflow_dispatch:
 
 defaults:
@@ -15,8 +15,8 @@ concurrency:
     cancel-in-progress: true
 
 jobs:
-    Deploy-to-Pages:
-        name: Deploy to Pages
+    Deploy-to-GitHub-Pages:
+        name: Deploy to GitHub Pages
         permissions:
             attestations: write
             id-token: write
@@ -31,7 +31,7 @@ jobs:
                 path: Genius
                 fetch-depth: 0
 
-            - name: Copy Scripts
+            - name: Copy scripts
               run: |
                 mkdir _site
                 eval "$(
@@ -46,13 +46,13 @@ jobs:
             - name: Configure GitHub Pages
               uses: actions/configure-pages@main
 
-            - name: Attest Build Provenance
+            - name: Attest build provenance
               uses: actions/attest-build-provenance@main
               with:
                 subject-path: _site
 
-            - name: Upload GitHub Pages Artifact
+            - name: Upload GitHub Pages artifact
               uses: actions/upload-pages-artifact@main
 
-            - name: Deploy GitHub Pages Site
+            - name: Deploy GitHub Pages site
               uses: actions/deploy-pages@main
