@@ -37,7 +37,7 @@ jobs:
                 eval "$(
                     git -C Genius for-each-ref --format="
                         git -C Genius checkout %(refname);
-                        cp Genius/install.sh _site/\$(
+                        cp Genius/Install.sh _site/\$(
                             echo %(refname:lstrip=-1) | sed \"s/^main$/index/\"
                         ).html;
                     " "refs/remotes/origin/*"
