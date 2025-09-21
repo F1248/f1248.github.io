@@ -39,14 +39,15 @@ jobs:
             - name: Copy scripts
               run: |
                 mkdir _site
+                cd Genius
                 eval "$(
-                    git -C Genius for-each-ref --format="
-                        git -C Genius checkout %(refname);
-                        sed -i 's|/main/|/%(refname:lstrip=-1)/|g' Genius/Install;
-                        cp Genius/Install _site/\$(
+                    git for-each-ref --format="
+                        git checkout %(refname);
+                        sed -i 's|/main/|/%(refname:lstrip=-1)/|g' Install;
+                        cp Install ../_site/\$(
                             echo %(refname:lstrip=-1) | sed \"s/^main$/index/\"
                         ).html;
-                        git -C Genius reset --hard
+                        git reset --hard
                     " "refs/remotes/origin/*"
                 )"
 
