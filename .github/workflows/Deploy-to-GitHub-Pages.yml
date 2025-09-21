@@ -45,11 +45,13 @@ jobs:
                         git checkout %(refname);
                         sed -i 's|/main/|/%(refname:lstrip=-1)/|g' Install;
                         cp Install ../_site/\$(
-                            echo %(refname:lstrip=-1) | sed \"s/^main$/index/\"
+                            echo %(refname:lstrip=-1)
                         ).html;
                         git reset --hard
                     " "refs/remotes/origin/*"
                 )"
+                cd ../_site
+                cp main.html index.html
 
             - name: Configure GitHub Pages
               uses: actions/configure-pages@main
