@@ -42,11 +42,11 @@ jobs:
                 cd Genius
                 eval "$(
                     git for-each-ref --format="
-                        git checkout %(refname);
-                        sed -i 's|/main/|/%(refname:lstrip=-1)/|g' Install;
+                        git checkout %(refname)
+                        sed -i 's|/main/|/%(refname:lstrip=-1)/|g' Install
                         cp Install ../_site/\$(
                             echo %(refname:lstrip=-1)
-                        ).html;
+                        ).html
                         git reset --hard
                     " "refs/remotes/origin/*"
                 )"
