@@ -11,6 +11,8 @@ on:
             - .github/workflows/Deploy-to-GitHub-Pages.yml
     workflow_dispatch:
 
+permissions: {}
+
 defaults:
     run:
         shell: bash
